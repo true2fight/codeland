@@ -38,6 +38,12 @@ window.App = (() => {
           runPreview();
         }
       }
+      if (e.shiftKey && e.altKey && (e.key === 'f' || e.key === 'F')) {
+        if (currentProject) {
+          e.preventDefault();
+          EditorManager.formatActiveEditor();
+        }
+      }
     });
   }
 
@@ -197,9 +203,17 @@ window.App = (() => {
   function setupEditorEvents() {
     const backBtn = document.getElementById('back-btn');
     const runBtn = document.getElementById('run-btn');
+    const formatBtn = document.getElementById('format-btn');
     const titleInput = document.getElementById('project-title-input');
     const downloadZipBtn = document.getElementById('download-zip-btn');
     const exportJsonBtn = document.getElementById('export-json-btn');
+
+    // Format active code
+    formatBtn.addEventListener('click', () => {
+      if (currentProject) {
+        EditorManager.formatActiveEditor();
+      }
+    });
 
     // Back to dashboard
     backBtn.addEventListener('click', () => {

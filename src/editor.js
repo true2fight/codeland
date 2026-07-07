@@ -31,7 +31,8 @@ window.EditorManager = (() => {
     // HTML Editor
     editors.html = CodeMirror.fromTextArea(document.getElementById('editor-html'), {
       ...editorConfig,
-      mode: 'htmlmixed'
+      mode: 'htmlmixed',
+      autoCloseTags: true
     });
 
     // CSS Editor
@@ -132,12 +133,59 @@ window.EditorManager = (() => {
     });
   }
 
+  // 6. Format active editor code using JS-Beautify
+  function formatActiveEditor() {
+    const editor = editors[activeLang];
+    if (!editor) return;
+
+    const rawCode = editor.getValue();
+    let formattedCode = rawCode;
+
+    try {
+      if (activeLang === 'html') {
+        if (window.html_beautify) {
+          formattedCode = window.html_beautify(rawCode, {
+            indent_size: 2,
+            wrap_line_length: 120,
+            unformatted: ['code', 'pre', 'em', 'strong', 'span']
+          });
+        }
+      } else if (activeLang === 'css') {
+        if (window.css_beautify) {
+          formattedCode = window.css_beautify(rawCode, {
+            indent_size: 2
+          });
+        }
+      } else if (activeLang === 'js') {
+        if (window.js_beautify) {
+          formattedCode = window.js_beautify(rawCode, {
+            indent_size: 2,
+            space_after_anon_function: true
+          });
+        }
+      }
+      
+      // Update editor with formatted content
+      if (formattedCode !== rawCode) {
+        editor.setValue(formattedCode);
+      }
+      
+      setTimeout(() => {
+        editor.refresh();
+        editor.focus();
+      }, 50);
+    } catch (e) {
+      console.error("Помилка автоформатування коду:", e);
+    }
+  }
+
   return {
     init,
     setValues,
     getValues,
     switchTab,
     refreshAll,
+    formatActiveEditor,
     getActiveLang: () => activeLang
   };
 })();
