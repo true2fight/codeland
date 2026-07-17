@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8257e5" />
+      <stop offset="100%" stop-color="#00d2ff" />
+    </linearGradient>
+    
+    <!-- White-to-Cyan Gradient for the Icon Details -->
+    <linearGradient id="icon-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#e0f7ff" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Card -->
+  <rect width="64" height="64" rx="16" fill="url(#bg-grad)" />
+
+  <!-- Graduation Cap (Mortarboard) -->
+  <!-- Diamond Top: center at (32, 22) -->
+  <path d="M32 10 L52 18 L32 26 L12 18 Z" fill="url(#icon-grad)" />
+  
+  <!-- Tassel on the right side -->
+  <path d="M47 20 L47 28 C47 29.5 45.5 30 45.5 30" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="45.5" cy="30" r="1.5" fill="#ffffff" />
+
+  <!-- Cap Base/Under-cap: centered below diamond -->
+  <path d="M20 22.5 V27 C20 31 24 33 32 33 C40 33 44 31 44 27 V22.5" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+
+  <!-- Code Brackets (HTML tags) - positioned below the cap -->
+  <!-- Left Bracket < -->
+  <path d="M22 44 L14 49 L22 54" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  
+  <!-- Slash / -->
+  <path d="M34 43 L30 55" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+
+  <!-- Right Bracket > -->
+  <path d="M42 44 L50 49 L42 54" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
